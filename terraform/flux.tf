@@ -72,11 +72,12 @@ data "flux_sync" "main" {
 
 # https://registry.terraform.io/modules/terraform-google-modules/kubernetes-engine/google/latest/submodules/auth
 module "gke_auth" {
+  depends_on           = [time_sleep.wait_30_seconds]
   source               = "terraform-google-modules/kubernetes-engine/google//modules/auth"
   project_id           = var.project_id
   cluster_name         = var.cluster_name
   location             = var.cluster_region
-  use_private_endpoint = var.use_private_endpoint
+  use_private_endpoint = false
 }
 
 provider "kubernetes" {
