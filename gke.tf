@@ -13,16 +13,28 @@ variable "gke_num_nodes" {
   description = "number of gke nodes"
 }
 
+resource "google_service_account" "main" {
+  account_id = "gke-${var.cluster_name}-sa"
+  display_name = "GKE Cluster Service Account"
+}
+
 # GKE cluster
 resource "google_container_cluster" "primary" {
-  name     = "${var.project_id}-gke"
+  name     = "${var.cluster_name}"
   location = var.region
   
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
   # node pool and immediately delete it.
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = 3
+
+  node_config {
+    service_account = google_service_account.main.email
+    oauth_scopes = [
+    "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  }
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
@@ -42,12 +54,12 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
 
     labels = {
-      env = var.project_id
+      env = var.cluster_name
     }
 
     # preemptible  = true
     machine_type = "n1-standard-1"
-    tags         = ["gke-node", "${var.project_id}-gke"]
+    tags         = ["gke-node", "${var.cluster_name}"]
     metadata = {
       disable-legacy-endpoints = "true"
     }
