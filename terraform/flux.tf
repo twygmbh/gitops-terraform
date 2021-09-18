@@ -70,6 +70,12 @@ data "flux_sync" "main" {
   branch      = var.branch
 }
 
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [google_container_cluster.main]
+
+  create_duration = "30s"
+}
+
 # https://registry.terraform.io/modules/terraform-google-modules/kubernetes-engine/google/latest/submodules/auth
 module "gke_auth" {
   depends_on           = [time_sleep.wait_30_seconds]
