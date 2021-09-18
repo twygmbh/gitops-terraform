@@ -154,7 +154,7 @@ data "flux_install" "main" {
 
 data "flux_sync" "main" {
   target_path = var.target_path
-  url         = "ssh://git@github.com/${var.organization}/${var.repository_name}.git"
+  url         = "ssh://git@github.com/${var.github_owner}/${var.repository_name}.git"
   branch      = var.branch
 }
 
@@ -265,7 +265,7 @@ provider "github" {
 
 # To make sure the repository exists and the correct permissions are set.
 data "github_repository" "main" {
-  full_name = "${var.organization}/${var.repository_name}"
+  full_name = "${var.github_owner}/${var.repository_name}"
 }
 
 resource "github_repository_file" "install" {
