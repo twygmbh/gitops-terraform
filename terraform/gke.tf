@@ -11,9 +11,9 @@ data "flux_sync" "main" {
 module "gke_auth" {
   source               = "terraform-google-modules/kubernetes-engine/google//modules/auth"
   project_id           = var.project_id
-  cluster_name         = var.cluster_name
+  cluster_name         = google_container_cluster.main.name
   location             = var.region
-  use_private_endpoint = var.use_private_endpoint
+  use_private_endpoint = false
 }
 
 provider "kubernetes" {
