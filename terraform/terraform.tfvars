@@ -10,5 +10,5 @@ github_deploy_key_title = "gitops-deploy-key-L15"
 
 organization = "twygmbh"
 repository_name = "l15-network"
-target_path = "manifests"
+target_path = "l15"
 branch = "main"

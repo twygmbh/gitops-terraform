@@ -13,6 +13,12 @@ variable "repository_name" {
   type        = string
 }
 
+variable "repository_visibility" {
+  description = "repository visibility"
+  default     = "private"
+  type        = string
+}
+
 variable "organization" {
   description = "organization"
   type        = string
@@ -26,6 +32,7 @@ variable "branch" {
 
 variable "target_path" {
   type        = string
+  default     = "l15"
   description = "Relative path to the Git repository root where the sync manifests are committed."
 }
 

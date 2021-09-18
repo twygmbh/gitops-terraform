@@ -21,4 +21,9 @@ terraform {
       version = "3.1.0"
     }
   }
+
+  backend "gcs" {
+    bucket = "tf-state-gitops-terraform-a"
+    prefix = "gitops-terraform"
+  }
 }
