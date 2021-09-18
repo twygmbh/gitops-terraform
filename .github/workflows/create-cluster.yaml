@@ -15,4 +15,4 @@ jobs:
       id: apply-terraform
       run: terraform init && terraform workspace select ${GITHUB_REF##*/} ||  terraform workspace new ${GITHUB_REF##*/} && terraform apply -auto-approve -var="project_id=${{ secrets.PROJECT_ID  }}" -var="repository_name=${GITHUB_REPOSITORY##*/}" -var="github_token=${{ secrets.GH_TOKEN  }}" -var="branch=${GITHUB_REF##*/}" -var="github_owner=${GITHUB_REPOSITORY%/*}"
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }} 
+        GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS_L15 }} 
