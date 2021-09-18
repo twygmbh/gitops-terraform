@@ -31,3 +31,5 @@ terraform {
     prefix = "gitops-terraform"
   }
 }
+
+provider "flux" {}

@@ -1,7 +1,6 @@
 project_id   = "twy-website-analytics"
 region       = "europe-west1"
 cluster_name = "l15-testnet"
-cluster_region = "europe-west1"
 
 github_owner = "twygmbh"
 
