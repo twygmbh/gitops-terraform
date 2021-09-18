@@ -8,7 +8,14 @@ data "flux_sync" "main" {
   branch      = var.branch
 }
 
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [google_container_cluster.main]
+
+  create_duration = "30s"
+}
+
 module "gke_auth" {
+  depends_on           = [time_sleep.wait_30_seconds]
   source               = "terraform-google-modules/kubernetes-engine/google//modules/auth"
   project_id           = var.project_id
   cluster_name         = google_container_cluster.main.name
