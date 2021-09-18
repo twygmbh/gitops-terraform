@@ -3,7 +3,7 @@ region       = "europe-west1"
 cluster_name = "l15-testnet"
 cluster_region = "europe-west1"
 
-github_owner = "rryter"
+github_owner = "twygmbh"
 
 github_deploy_key_title = "gitops-deploy-key-L15"
 
