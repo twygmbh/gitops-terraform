@@ -14,7 +14,7 @@ variable "gke_num_nodes" {
 }
 
 resource "google_service_account" "main" {
-  account_id = "gke-${var.cluster_name}-sa"
+  account_id = "gke-${var.cluster_name}-service-account"
   display_name = "GKE Cluster Service Account"
 }
 
