@@ -6,6 +6,11 @@ variable "region" {
   description = "region"
 }
 
+variable "zone" {
+  description = "zone"
+}
+
+
 variable "cluster_name" {
   description = "name of the cluster"
 }
